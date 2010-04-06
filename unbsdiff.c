@@ -255,7 +255,10 @@ int main(int argc,char *argv[])
 	eblen=0;
 
 	/* Create the patch file */
-	if ((pf = fopen(argv[3], "w")) == NULL)
+	if (!strcmp(argv[3], "-")) {
+		pf = stdout;
+	}
+	else if ((pf = fopen(argv[3], "w")) == NULL)
 		err(1, "%s", argv[3]);
 	
 	/* Header is
@@ -370,6 +373,8 @@ int main(int argc,char *argv[])
 		};
 	};
 
+	if (fflush(pf))
+		err(1, "fflush");
 	if (fclose(pf))
 		err(1, "fclose");
 
