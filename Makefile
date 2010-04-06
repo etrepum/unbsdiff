@@ -1,4 +1,4 @@
-CFLAGS		+=	-O3 -lbz2
+CFLAGS		+=	-O3 -lbz2 -lz
 
 PREFIX		?=	/usr/local
 INSTALL_PROGRAM	?=	${INSTALL} -c -s -m 555
