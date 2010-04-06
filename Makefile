@@ -4,12 +4,16 @@ PREFIX		?=	/usr/local
 INSTALL_PROGRAM	?=	${INSTALL} -c -s -m 555
 INSTALL_MAN	?=	${INSTALL} -c -m 444
 
-all:		bsdiff bspatch
+all:		unbsdiff bsdiff bspatch
+unbsdiff:	unbsdiff.c
 bsdiff:		bsdiff.c
 bspatch:	bspatch.c
 
 install:
 	${INSTALL_PROGRAM} bsdiff bspatch ${PREFIX}/bin
-.ifndef WITHOUT_MAN
+ifndef WITHOUT_MAN
 	${INSTALL_MAN} bsdiff.1 bspatch.1 ${PREFIX}/man/man1
-.endif
+endif
+
+clean:
+	rm -f bsdiff bspatch unbsdiff
